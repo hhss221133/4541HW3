@@ -1,13 +1,7 @@
-# Sample Hardhat Project
-
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
-
-Try running some of the following tasks:
+# COMP4541 Exercise 2
+I highly recommend any testers to use this repo as I have defined a hardhat test to easily change variables and create hashes easily.
 
 ```shell
-npx hardhat help
+npm install
 npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.js
 ```
