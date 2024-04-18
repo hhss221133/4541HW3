@@ -58,6 +58,7 @@ contract Auction {
         require(msg.sender != owner, "Owner cannot participate");
         require(amount > 0, "buy in most be non zero");
         require(msg.value == amount, "Must declare equal amount to value");
+        require(msg.value <= 10000000000000000000000000, "Cannot bid that high");
         tokenBalance[msg.sender] += msg.value;
     }
 
@@ -75,7 +76,7 @@ contract Auction {
 
     function reveal(uint256 bidAmount, string memory _secret) external onlyAfter(auctionEndTime) onlyBefore(revealEndTime) noReentrancy {
         require(!bids[msg.sender].revealed, "Bid already revealed.");
-
+        require(bytes(_secret).length <= 3000, "Secret is too long");
         Bid storage myBid = bids[msg.sender];
         require(keccak256(abi.encodePacked(bidAmount, _secret)) == myBid.bidHash, "Invalid bid reveal.");
         
