@@ -106,7 +106,8 @@ contract Auction {
         uint256 amount = tokenBalance[msg.sender];
         require(amount > 0, "No funds to withdraw.");
         tokenBalance[msg.sender] = 0;
-        payable(msg.sender).transfer(amount);
+        (bool success, ) = msg.sender.call{value: amount}("");
+        require(success, "Transfer failed");
         emit FundsWithdrawn(msg.sender, amount);
     }
 
